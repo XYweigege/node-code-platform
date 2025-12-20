@@ -8,7 +8,8 @@ export default {
         {
             files: ['**/*.vue'],
             rules: {
-                'unit-allowed-list': ['em', 'rem', '%', 's', 'px', 'vh', 'vw', 'deg', 'ms']
+                'unit-allowed-list': ['em', 'rem', '%', 's', 'px', 'vh', 'vw', 'deg', 'ms'],
+                'no-empty-source': null
             }
         }
     ]

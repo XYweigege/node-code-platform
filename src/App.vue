@@ -1,13 +1,10 @@
 <script setup lang="ts">
-import CalClulator from './demo/PluginDemo.vue'
+import MaterialRenderer from './components/MaterialRenderer.vue'
+// import CalClulator from './demo/PluginDemo.vue'
 </script>
 
 <template>
-    <div>
-        <div>This is a vetur</div>
-        <div>初始化测试提1交</div>
-    </div>
-    <CalClulator />
+    <MaterialRenderer />
 </template>
 
 <style scoped>

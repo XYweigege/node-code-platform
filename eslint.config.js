@@ -11,6 +11,7 @@ export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...p
         'vue/singleline-html-element-content-newline': 'off',
         'vue/html-closing-bracket-newline': 'off',
         'vue/html-indent': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
         'sort/exports': 'error' //  /前面和plugin的同名
     },
     languageOptions: {
