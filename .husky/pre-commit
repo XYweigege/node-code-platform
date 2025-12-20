@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+ 
+# 你可以在这里添加你想在提交前运行的命令。
+pnpm lint:es && pnpm lint:style 
