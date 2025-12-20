@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { inject } from 'vue'
+// import { inject } from 'vue'
 
 import blocks from '../mock/blocks'
 
-const blockMap = inject('blockMap') as Record<string, any>
-console.log(blockMap)
+// const blockMap = inject('blockMap') as Record<string, any>
+// console.log(blockMap)
+console.log(blocks)
 </script>
 
 <template>
