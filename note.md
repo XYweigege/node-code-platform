@@ -18,28 +18,6 @@
     -   commitlint
     -   husky
 
-看到一小时 印客 21 集 1：00：00
-
-# 无代码可视化平台实战
-
-## 架构设计
-
-我们都会选用 vite 创建，在基础架子上面做修改
-
-使用 `pnpm create vite vue-action --template vue-ts`
-
-### 相关技术选择
-
--   打包 vite
--   技术栈 vue3 vuerouter4 pinia
--   规范化
-    -   eslint
-    -   prettier
-    -   Stylelint
-    -   cspell
-    -   commitlint
-    -   husky
-
 ### 规范约束
 
 eslint
@@ -126,3 +104,85 @@ commitlint + husky 才是强制的
 只要你的项目里有 husky 的 commit-msg hook 和 commitlint，即使你不装 commitizen/cz-git，
 直接用 git commit -m "xxx" 也会被校验。
 如果 message 不规范，commit 会被阻止
+
+自定义 eslint 规则，参考 antfu 的
+
+# 基础框架实现
+
+## 插件化机制
+
+因为无法预料 物料种类的具体表现
+
+### 举个例子
+
+```js
+//插件化机制的例子
+/**
+ * 这个是插件化机制，参考vue的插件化机制
+ * app.use(Router) * app.use(Store)
+ *
+ */
+const mulOperation = {
+    name: 'MUL',
+    operation: (a: number, b: number) => a * b
+}
+
+const divOperation = {
+    name: 'DIV',
+    operation: (a: number, b: number) => a / b
+}
+const addOperation = {
+    name: 'ADD',
+    operation: (a: number, b: number) => a + b
+}
+
+const subOperation = {
+    name: 'SUB',
+    operation: (a: number, b: number) => a - b
+}
+type Operation = {
+    name: string
+    operation: (a: number, b: number) => number
+}
+/**
+ * 插件基座
+ */
+class Calculate {
+    operations: Operation[] = []
+    constructor() {
+        this.operations = []
+    }
+    use(op: Operation) {
+        this.operations.push(op)
+    }
+
+    calculate(a: number, b: number, operationName: string) {
+        const operation = this.operations.find(op => op.name === operationName)
+        if (operation) {
+            return operation?.operation(a, b)
+        }
+        return NaN
+    }
+}
+
+const calculator = new Calculate()
+// 添加加法操作
+calculator.use(addOperation)
+
+//添加乘法操作
+calculator.use(mulOperation)
+
+calculator.use(subOperation)
+
+calculator.use(divOperation)
+
+//计算
+console.log(calculator.calculate(2, 3, 'ADD')) // 6
+
+//添加自定义插件
+calculator.use({
+    name: 'EXP',
+    operation: (a: number, b: number) => Math.pow(a, b)
+})
+console.log(calculator.calculate(2, 3, 'EXP'))
+```

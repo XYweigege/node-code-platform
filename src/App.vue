@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import CalClulator from './demo/PluginDemo.vue'
 </script>
 
 <template>
@@ -7,7 +7,7 @@ import HelloWorld from './components/HelloWorld.vue'
         <div>This is a vetur</div>
         <div>初始化测试提1交</div>
     </div>
-    <HelloWorld msg="Vite + Vue" />
+    <CalClulator />
 </template>
 
 <style scoped>
