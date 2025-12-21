@@ -107,13 +107,21 @@ commitlint + husky 才是强制的
 
 自定义 eslint 规则，参考 antfu 的
 
-# 基础框架实现
+## 基础框架实现
 
-## 插件化机制--微内核
+-   了解插件化机制的实现
+-   掌握表单检验与表单状态管理
+
+-   掌握插件化设计思想
+-   掌握动态表单设计思想及表单校验规则
+-   掌握物料配置核心实现思路
+
+### 插件化机制--微内核
 
 因为无法预料 物料种类的具体表现
+物料的加载我们选用插件化机制实现，插件化机制在前端应用或者框架中的应用非常广泛。不论是业务开发还是框架开发，我们都能见到插件化设计。比如 webpack 基于 tappable 实现的插件化。
 
-### 举个例子
+#### 举个例子
 
 ```js
 //插件化机制的例子
@@ -188,6 +196,13 @@ console.log(calculator.calculate(2, 3, 'EXP'))
 ```
 
 ```js
+
+通过上面的例子，从插件的角度可以分成几个部分：
+
+-   程序主体（Program），我们通常也称之为插件底座，即上例中的 Calculator；
+-   插件接口声明（Plugin Interface），即上例中的 Plugin；
+-   插件实现（Plugin Implementation），即 AddPlugin，SubtractPlugin，MultiplicatiPlugin；
+
 import { App } from 'vue'
 const heyiPlugin = {
     install(app: App<Element>) {
@@ -197,3 +212,20 @@ const heyiPlugin = {
 }
 app.use(heyiPlugin) //注册插件。
 ```
+
+插件化机制用途非常广泛：
+
+1. 表单校验，校验规则就可以是插件化的，rules: [{required: true}, {max: 20}, {min: 10}]
+2. webpack、vue、pinia 这些框架，他的能力拓展都是通过插件化实现的
+
+### SmoothDnd 实现编排
+
+有了物料，我们就可以在编辑器中使用对应物料进行业务页面组装，因此我们需要封装一个物料编排编辑器，对于众多物料，我们首先就会想到需要使用策略模式实现不同物料的初始渲染。
+
+```vue
+<component :is="xxx" />
+```
+
+### vee-validate 表单校验与管理
+
+### 表单生成器的思路 1 2

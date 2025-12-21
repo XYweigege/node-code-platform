@@ -12,5 +12,8 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true
     },
+    "vueCompilerOptions": {
+        "skipTemplateCodegen": true
+    },
     "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

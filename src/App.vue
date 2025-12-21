@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import MaterialRenderer from './components/MaterialRenderer.vue'
+import AppRightPanel from './components/AppRightPanel/AppRightPanel.vue'
 // import CalClulator from './demo/PluginDemo.vue'
 </script>
 
 <template>
     <MaterialRenderer />
+    <AppRightPanel />
 </template>
 
 <style scoped>

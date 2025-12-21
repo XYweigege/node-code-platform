@@ -23,7 +23,7 @@
         "noUncheckedSideEffectImports": true
     },
     "vueCompilerOptions": {
-        "globalTypesPath": "./node_modules/.vue-global-types"
+        "skipTemplateCodegen": true
     },
     "include": ["vite.config.ts"]
 }

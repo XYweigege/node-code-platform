@@ -3,6 +3,6 @@ const blocks = [
     { id: '2', type: 'quote' },
     { id: '3', type: 'chart' },
     { id: '4', type: 'text' },
-    { id: 5, type: 'remote' }
+    { id: '5', type: 'remote' }
 ]
 export default blocks
