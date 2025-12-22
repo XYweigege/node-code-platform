@@ -50,7 +50,7 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
 </script>
 
 <template>
-    <div>
+    <div class="matirelrender">
         <SmoothDnDContainer group-name="blocks" @drop="blocksData = applyDrag(toRaw(blocksData), $event)">
             <SmoothDndDraggable v-for="block in blocksData" :key="block.id">
                 <component :is="$blockMap[block.type].material" />
@@ -59,4 +59,8 @@ const applyDrag = <T extends any[]>(arr: T, dragResult: DropResult) => {
     </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.matirelrender {
+    width: 100%;
+}
+</style>

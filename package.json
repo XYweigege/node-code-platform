@@ -24,7 +24,9 @@
         "vue": "3.4.31",
         "vue-router": "4.4.0",
         "smooth-dnd": "0.12.1",
-        "vee-validate": "4.13.2"
+        "vee-validate": "4.13.2",
+        "echarts": "5.5.1",
+        "vue-echarts": "6.7.3"
     },
     "devDependencies": {
         "@eslint/js": "9.7.0",
