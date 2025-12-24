@@ -17,6 +17,36 @@ type ChartResData = {
         label: string
     }[]
 }
+/**
+ * 获取X轴
+ * @param data
+ * @returns
+ */
+export const getXAis = (data: ChartResData) => {
+    return {
+        type: 'category',
+        data: data?.dimensions || ['mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    }
+}
+/**
+ * 获取Y轴
+ * @returns
+ */
+export const getYAxis = () => {
+    return {
+        type: 'value'
+    }
+}
+
+export const getSeries = (data: ChartResData) => {
+    debugger
+    return [
+        {
+            data: data.measures || [150, 230, 224, 218, 135, 147, 260],
+            type: data.type
+        }
+    ]
+}
 
 //跟后端定义一个数据，通用格式，前端根据不同的图表类型，转换生成不同的图表数据
 //47分
@@ -30,20 +60,11 @@ type ChartResData = {
 const barTransformer = {
     name: 'bar',
     transform(data: ChartResData) {
+        //适配逻辑
         return {
-            xAxis: {
-                type: 'category',
-                data: data
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    data: [150, 230, 224, 218, 135, 147, 260],
-                    type: 'line'
-                }
-            ]
+            xAxis: getXAis(data),
+            yAxis: getYAxis(),
+            series: getSeries(data)
         }
     }
 }
@@ -52,19 +73,9 @@ const lineTransformer = {
     name: 'line',
     transform(data: ChartResData) {
         return {
-            xAxis: {
-                type: 'category',
-                data: data
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    data: data,
-                    type: 'line'
-                }
-            ]
+            xAxis: getXAis(data),
+            yAxis: getYAxis(),
+            series: getSeries(data)
         }
     }
 }
@@ -84,12 +95,12 @@ class ChartTransformer {
     }
     transform(config: any) {
         //适配逻辑
-        const { type, data } = config
+        const { type } = config
         const transformer = this.transformers.find(t => t.name === type)
         if (!transformer) {
             throw new Error('no transformer ')
         }
-        return transformer.transform(data) //['mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        return transformer.transform(config) //['mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     }
 }
 

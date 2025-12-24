@@ -234,5 +234,9 @@ app.use(heyiPlugin) //注册插件。
 图表渲染器我们需要支持如下场景：
 
 1. 基础图表，直接使用 echarts 进行封装，这里我们简单挑一个 echarts 图表做示例
-2. 基于 zrender 实现自定义可视化内容
+2. 基于 zrender 实现自定义可视化内容 ps(zrender 是 echarts 的底层库)
 3. 基于 d3 实现地图可视化
+
+本地持久化场景使用 indexedDB，用第三方库叫 dexie 方便去使用 indexDB
+
+### 第三节课重点，图表渲染器，图表转换器
