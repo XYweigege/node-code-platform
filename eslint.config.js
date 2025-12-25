@@ -17,7 +17,8 @@ export default ts.config(js.configs.recommended, ...ts.configs.recommended, ...p
         'vue/order-in-components': 'off',
         'vue/require-default-prop': 'off',
         'no-debugger': 'off',
-        'vue/html-self-closing': 'off'
+        'vue/html-self-closing': 'off',
+        'vue/attributes-order': 'off'
     },
     languageOptions: {
         parserOptions: {

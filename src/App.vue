@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import MaterialRenderer from './components/MaterialRenderer.vue'
-import AppRightPanel from './components/AppRightPanel/AppRightPanel.vue'
-// import CalClulator from './demo/PluginDemo.vue'
+// import MaterialRenderer from './components/MaterialRenderer.vue'
+// import AppRightPanel from './components/AppRightPa/nel/AppRightPanel.vue'
+import ChartTest from './components/ChartRenderer/ChartTest.vue'
 </script>
 
 <template>
-    <MaterialRenderer />
-    <AppRightPanel />
+    <!-- <MaterialRenderer />
+    <AppRightPanel />  -->
+    <ChartTest />
 </template>
 
 <style scoped>

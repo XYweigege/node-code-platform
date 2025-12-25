@@ -52,6 +52,7 @@ const donutPlugin = {
 const areaPlugin = {
     name: 'area',
     transform(data) {
+        debugger
         return {
             xAxis: getXAis(data),
             yAxis: getYAxis(),
@@ -72,13 +73,14 @@ const areaPlugin = {
 const scatterPlugin = {
     name: 'scatter',
     transform(data) {
+        debugger
         return {
             xAxis: getXAis(data),
             yAxis: getYAxis(),
             series: [
                 {
                     type: 'scatter',
-                    data: data.data.map(item => [item.label, item.value])
+                    data: data.data.map(item => [item?.[0], item?.[1]])
                 }
             ]
         }

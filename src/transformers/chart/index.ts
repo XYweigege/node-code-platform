@@ -1,7 +1,7 @@
 //负责整体数据转换器的适配逻辑
-import {} from './bar'
-import {} from './line'
-import {} from './column'
+import { barPlugin } from './bar'
+import { linePlugin } from './line'
+import { columnPlugin } from './column'
 import {
     piePlugin,
     donutPlugin,
@@ -69,37 +69,11 @@ export const getSeries = (data: ChartResData) => {
  * 图表数据转换器
  */
 
-/**
- * 柱状图数据转换器
- */
-const barTransformer = {
-    name: 'bar',
-    transform(data: ChartResData) {
-        //适配逻辑
-        return {
-            xAxis: getXAis(data),
-            yAxis: getYAxis(),
-            series: getSeries(data)
-        }
-    }
-}
-
-const lineTransformer = {
-    name: 'line',
-    transform(data: ChartResData) {
-        return {
-            xAxis: getXAis(data),
-            yAxis: getYAxis(),
-            series: getSeries(data)
-        }
-    }
-}
-
 //加转换器逻辑
 //定义转换器，注册转换器
 //
 class ChartTransformer {
-    private transformers = [barTransformer]
+    private transformers: any[] = []
     constructor() {
         //初始化适配器
     }
@@ -111,35 +85,22 @@ class ChartTransformer {
     transform(config: any) {
         //适配逻辑
         const { type } = config
+        debugger
         const transformer = this.transformers.find(t => t.name === type)
         if (!transformer) {
-            throw new Error('no transformer ')
+            throw new Error(`No transformer found for chart type: ${type}`)
         }
         return transformer.transform(config) //['mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     }
 }
 
 export const chartTransformer = new ChartTransformer()
-/**
-    piePlugin,
-    donutPlugin,
-    areaPlugin,
-    scatterPlugin,
-    radarPlugin,
-    candlePlugin,
-    mixBarLinePlugin,
-    gaugePlugin,
-    funnelPlugin,
-    sunburstPlugin,
-    sankeyPlugin,
-    heatmapPlugin,
-    boxplotPlugin,
-    graphPlugin,
-    treemapPlugin
- */
+
 //注册转换器
+chartTransformer.use(barPlugin)
+chartTransformer.use(linePlugin)
+chartTransformer.use(columnPlugin)
 chartTransformer.use(piePlugin)
-chartTransformer.use(lineTransformer)
 chartTransformer.use(donutPlugin)
 chartTransformer.use(areaPlugin)
 chartTransformer.use(scatterPlugin)
