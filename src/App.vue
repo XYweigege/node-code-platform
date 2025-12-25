@@ -1,13 +1,17 @@
 <script setup lang="ts">
 // import MaterialRenderer from './components/MaterialRenderer.vue'
 // import AppRightPanel from './components/AppRightPa/nel/AppRightPanel.vue'
-import ChartTest from './components/ChartRenderer/ChartTest.vue'
+// import ChartTest from './components/ChartRenderer/ChartTest.vue'
+// import CommonTable from './components/CanvasTable/CommonTable.vue'
+import CanvasTable1 from './components/CanvasTable/CanvasTable1.vue'
 </script>
 
 <template>
     <!-- <MaterialRenderer />
     <AppRightPanel />  -->
-    <ChartTest />
+    <!-- <ChartTest /> -->
+    <!-- <CommonTable /> -->
+    <CanvasTable1 />
 </template>
 
 <style scoped>

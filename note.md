@@ -335,3 +335,11 @@ export default ChartRenderer
 
 出 json
 出组件源代码
+
+canvas 是位图，不够清晰  
+svg 是矢量图  
+位图需要处理缩放问题 才能变得清晰，很多图画 *2*3 倍数
+
+首选获取到设备的 像素比 window.devicePixelRatio
+
+看到 1 小时 37 分

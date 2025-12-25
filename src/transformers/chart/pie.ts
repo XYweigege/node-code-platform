@@ -232,15 +232,7 @@ const heatmapPlugin = {
     name: 'heatmap',
     transform(data) {
         return {
-            xAxis: { type: 'category', data: data.dimensions },
-            yAxis: { type: 'category', data: data.measures },
-            visualMap: { min: 0, max: 100, calculable: true },
-            series: [
-                {
-                    type: 'heatmap',
-                    data: data.data.map(item => [item.x, item.y, item.value])
-                }
-            ]
+            ...data
         }
     }
 }

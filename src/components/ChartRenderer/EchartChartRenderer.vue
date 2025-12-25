@@ -204,22 +204,54 @@ const getChartData = type => {
     // 热力图数据格式
     else if (type === 'heatmap') {
         return {
-            ...baseData,
-            data: [
-                { x: 0, y: 0, value: 10 },
-                { x: 1, y: 0, value: 20 },
-                { x: 2, y: 0, value: 30 },
-                { x: 3, y: 0, value: 40 },
-                { x: 4, y: 0, value: 50 },
-                { x: 5, y: 0, value: 60 },
-                { x: 6, y: 0, value: 70 },
-                { x: 0, y: 1, value: 20 },
-                { x: 1, y: 1, value: 30 },
-                { x: 2, y: 1, value: 40 },
-                { x: 3, y: 1, value: 50 },
-                { x: 4, y: 1, value: 60 },
-                { x: 5, y: 1, value: 70 },
-                { x: 6, y: 1, value: 80 }
+            type: 'heatmap',
+            tooltip: { position: 'top' },
+            grid: { height: '50%', top: '10%' },
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                splitArea: { show: true }
+            },
+            yAxis: {
+                type: 'category',
+                data: ['Morning', 'Afternoon', 'Evening'],
+                splitArea: { show: true }
+            },
+            visualMap: {
+                min: 0,
+                max: 100,
+                calculable: true,
+                orient: 'horizontal',
+                left: 'center',
+                bottom: '15%'
+            },
+            series: [
+                {
+                    type: 'heatmap',
+                    data: [
+                        [0, 0, 10],
+                        [1, 0, 20],
+                        [2, 0, 30],
+                        [3, 0, 40],
+                        [4, 0, 50],
+                        [5, 0, 60],
+                        [6, 0, 70],
+                        [0, 1, 20],
+                        [1, 1, 30],
+                        [2, 1, 40],
+                        [3, 1, 50],
+                        [4, 1, 60],
+                        [5, 1, 70],
+                        [6, 1, 80]
+                    ],
+                    label: { show: true },
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
             ]
         }
     }
