@@ -242,3 +242,96 @@ app.use(heyiPlugin) //注册插件。
 ### 第三节课重点，图表渲染器，图表转换器
 
 基于后端数据返回通用化，负责插件化机制封装图表数据转换器
+https://chatgpt.com/c/694c00b7-a0e8-8322-9d41-543707a9bc4b //参考
+
+```js
+┌────────────────────────────────┐
+│        后端通用图表数据结构        │
+└────────────────────────────────┘
+                 │
+                 ▼
+┌────────────────────────────────┐
+│     Chart Transformer（数据转换层） │
+│  - 插件化 Transformer 注册机制      │
+│  - 多图表类型适配逻辑              │
+│  - 生成标准 ECharts Option         │
+└────────────────────────────────┘
+                 │
+       标准化 ECharts Option
+                 │
+                 ▼
+┌────────────────────────────────┐
+│    Chart Renderer（渲染层）       │
+│  Vue 组件封装 + ECharts Core     │
+│  - 自动主题                     │
+│  - 自动 Resize                  │
+│  - 插件化按需加载（use([...])） │
+└────────────────────────────────┘
+                 │
+                 ▼
+┌────────────────────────────────┐
+│            页面展示              │
+└────────────────────────────────┘
+
+```
+
+```txt
+EchartChartRenderer.vue：
+接收 option（来自 Transformer）
+
+自动 Render（VChart）
+
+自动注入主题（dark/light）
+
+ECharts 插件按需加载（CanvasRenderer, BarChart, LineChart...）
+
+支持响应式（autoresize
+```
+
+```tsx
+import React, { useMemo } from 'react'
+import ReactECharts from 'echarts-for-react'
+import * as echarts from 'echarts/core'
+
+// 按需引入渲染器
+import { CanvasRenderer } from 'echarts/renderers'
+
+// 图表类型
+import { LineChart, BarChart, PieChart } from 'echarts/charts'
+
+// 组件
+import { GridComponent, TooltipComponent, TitleComponent, LegendComponent } from 'echarts/components'
+
+// 注册（等价于 vue: use([...])）
+echarts.use([CanvasRenderer, LineChart, BarChart, PieChart, GridComponent, TooltipComponent, TitleComponent, LegendComponent])
+
+// 引入你的 transformer
+import { chartTransformer } from '../transformers/chart'
+
+interface ChartRendererProps {
+    type: string
+    data: any
+    style?: React.CSSProperties
+}
+
+const ChartRenderer: React.FC<ChartRendererProps> = ({ type, data, style }) => {
+    const option = useMemo(() => {
+        return chartTransformer.transform({
+            type,
+            ...data
+        })
+    }, [type, data])
+
+    return <ReactECharts option={option} theme="dark" style={style || { height: 400 }} />
+}
+
+export default ChartRenderer
+```
+
+构建企业级 Chart Transformer 图表转换引擎，基于插件化架构实现 15+ 图表类型（柱状图、折线图、饼图、桑基图、地图、热力图、K 线图等）自动数据适配。
+在 React 中封装通用图表渲染器，实现 数据解析层与图表渲染层完全解耦，新增图表无需改动业务代码，大幅提升图表扩展性与可维护性。
+
+#### 出码功能
+
+出 json
+出组件源代码

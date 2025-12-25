@@ -1,9 +1,24 @@
 //负责整体数据转换器的适配逻辑
 import {} from './bar'
 import {} from './line'
-import {} from './pie'
 import {} from './column'
-
+import {
+    piePlugin,
+    donutPlugin,
+    areaPlugin,
+    scatterPlugin,
+    radarPlugin,
+    candlePlugin,
+    mixBarLinePlugin,
+    gaugePlugin,
+    funnelPlugin,
+    sunburstPlugin,
+    sankeyPlugin,
+    heatmapPlugin,
+    boxplotPlugin,
+    graphPlugin,
+    treemapPlugin
+} from './pie'
 //  图表渲染器引擎开发
 /**
  * 插件化思想定制转换器。
@@ -105,9 +120,41 @@ class ChartTransformer {
 }
 
 export const chartTransformer = new ChartTransformer()
-
+/**
+    piePlugin,
+    donutPlugin,
+    areaPlugin,
+    scatterPlugin,
+    radarPlugin,
+    candlePlugin,
+    mixBarLinePlugin,
+    gaugePlugin,
+    funnelPlugin,
+    sunburstPlugin,
+    sankeyPlugin,
+    heatmapPlugin,
+    boxplotPlugin,
+    graphPlugin,
+    treemapPlugin
+ */
 //注册转换器
+chartTransformer.use(piePlugin)
 chartTransformer.use(lineTransformer)
+chartTransformer.use(donutPlugin)
+chartTransformer.use(areaPlugin)
+chartTransformer.use(scatterPlugin)
+chartTransformer.use(radarPlugin)
+chartTransformer.use(candlePlugin)
+chartTransformer.use(mixBarLinePlugin)
+chartTransformer.use(gaugePlugin)
+chartTransformer.use(funnelPlugin)
+chartTransformer.use(sunburstPlugin)
+chartTransformer.use(sankeyPlugin)
+chartTransformer.use(heatmapPlugin)
+chartTransformer.use(boxplotPlugin)
+chartTransformer.use(graphPlugin)
+chartTransformer.use(treemapPlugin)
+
 /**
  * 都是插件化思想
  * webpack
